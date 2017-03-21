@@ -5,12 +5,14 @@ class Musician(object):
     def solo(self, length):
         for i in range(length):
             print(self.sounds[i % len(self.sounds)], end=" ")
-        print()
+        print()  # Separate lines
+
 
 class Bassist(Musician): # The Musician class is the parent of the Bassist class
     def __init__(self):
         # Call the __init__ method of the parent class
         super().__init__(["Twang", "Thrumb", "Bling"])
+
 
 class Guitarist(Musician):
     def __init__(self):
@@ -26,6 +28,7 @@ class Guitarist(Musician):
 # able to hire and fire musicians, and have the musicians play their solos after 
 # the drummer has counted time.
 
+
 class Drummer(Musician):
     def __init__(self):
         super().__init__(["Thump", "Bump", "Droll"])
@@ -35,8 +38,14 @@ class Drummer(Musician):
         
     def combust(self):
         print("Foosh! Aaaah!")
-        
-class Band(Musician):
+
+
+class Band:
+    def __init__(self):
+        self.Dave = Drummer()
+        self.Billy = Bassist()
+        self.George = Guitarist()
+
     def hire(self):
         print("You're hired!")
         
@@ -44,10 +53,11 @@ class Band(Musician):
         print("You're fired!")
         
     def play(self):
-        Drummer.count()
-        Drummer.solo(6)
-        Bassist.solo(8)
-        Guitarist.solo(6)
+        self.Dave.count()
+        self.Dave.solo(6)
+        self.Billy.solo(8)
+        self.George.solo(6)
 
-if __name__== "__main__":
-    Band.play()
+if __name__ == "__main__":
+    gig = Band()
+    gig.play()
